@@ -25,14 +25,14 @@ abstract class Product{
 /**
  *  Table
  */
-class Table extends Product{
+class Product_Table extends Product{
     private $legs = 3;
 }
 
 /**
  *  Chair
  */
-class Chair extends Product{
+class Product_Chair extends Product{
     private $legs = 4;
 }
 
@@ -46,8 +46,9 @@ class ProductFactory{
      *  returns object
      */
     public static function create($product, $name){
-        if(!class_exists($product)) throw new Exception("Product class $product was not registered or loaded", 1);
-        return new $product($name);
+        if(!class_exists("Product_".$product)) throw new Exception("Product class $product was not registered or loaded", 1);
+        $productClass = "Product_".$product;
+        return new $productClass($name);
     }
 }
 
